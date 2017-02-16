@@ -1,0 +1,13 @@
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Dropbox_API.exe.config
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Dropbox_API.exe
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Dropbox_API.pdb
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Dropbox.Api.dll
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Newtonsoft.Json.dll
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Dropbox.Api.xml
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\Newtonsoft.Json.xml
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.csprojResolveAssemblyReference.cache
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.Form1.resources
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.Properties.Resources.resources
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.csproj.GenerateResource.Cache
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.exe
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.pdb
