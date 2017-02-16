@@ -11,3 +11,4 @@ D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.Properties.Resour
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.csproj.GenerateResource.Cache
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.exe
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.pdb
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.CreateDir.resources

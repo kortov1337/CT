@@ -16,16 +16,13 @@ namespace Dropbox_API
     {      
         static string token = "X0maJoW9_aAAAAAAAAAACZbATZubjd0vm52xwTvrROQEl-6Pc0yl-K-Gm9Bk5UYi";
         static DropboxClient client = new DropboxClient(token);
+        
 
         public string[] getNodeName(string path,int pos)
         {
             string [] res=new string[2];
-            //path = path.Remove(0, 1);
             int spos = path.LastIndexOf("/");
-            //if (spos >= 0)
-         //   {
-                res[1] = path.Substring(spos+1, path.Length-spos-1);
-           // }
+            res[1] = path.Substring(spos+1, path.Length-spos-1);
             path = path.Remove(spos , path.Length - spos);
             spos = path.LastIndexOf("/")+1;
             res[0] = path.Substring(spos , path.Length-spos);
@@ -37,15 +34,14 @@ namespace Dropbox_API
             InitializeComponent();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
-        {
-          FullAccount info = await client.Users.GetCurrentAccountAsync();
-            detailInfoTB.Text = info.Name.DisplayName +Environment.NewLine+ info.Email;
-        }
+     
 
         private async void tabControl1_Click(object sender, EventArgs e)
         {
+            toolStripStatusLabel1.Text = "Loading info...";
             FullAccount info = await client.Users.GetCurrentAccountAsync();
+            if (info != null)
+                toolStripStatusLabel1.Text = "Loading info succeed!";
             detailInfoTB.Text = "Display name: " + info.Name.DisplayName + Environment.NewLine + "Surname name: " + 
             info.Name.Surname + Environment.NewLine + "Email: " + info.Email + Environment.NewLine +"Account type: " + 
             (info.AccountType.IsBasic?"Basic":info.AccountType.IsBusiness?"Business":info.AccountType.IsPro?"Pro":"Unknown")
@@ -59,7 +55,10 @@ namespace Dropbox_API
 
         private async void button2_Click(object sender, EventArgs e)
         {
+            toolStripStatusLabel1.Text = "Refreshing storage space status...";
             SpaceUsage space = await client.Users.GetSpaceUsageAsync();
+            if (space != null)
+                toolStripStatusLabel1.Text = "Refreshing succeed!";
             spaceInfo.Text = "Used space: " + (space.Used/1000000).ToString() + "MB" + Environment.NewLine + "Free space: "+
             (space.Allocation.AsIndividual.Value.Allocated- space.Used)/1000000 + "MB" + Environment.NewLine + "Allocated space: " +
             (space.Allocation.AsIndividual.Value.Allocated/1000000).ToString() + "MB";
@@ -67,9 +66,12 @@ namespace Dropbox_API
 
         private async void button3_Click(object sender, EventArgs e)
         {
-             ListFolderResult list = await client.Files.ListFolderAsync(new ListFolderArg(string.Empty, true));
-            string tmp="Folder1";
+            toolStripStatusLabel1.Text = "Getting folders list ...";
+            ListFolderResult list = await client.Files.ListFolderAsync(new ListFolderArg(string.Empty, true));
+            if (list != null)
+                toolStripStatusLabel1.Text = "Getting folders list succeed!";
             TreeNode [] root = treeView1.Nodes.Find("root", false);
+            root[0].Nodes.Clear();
             foreach (var item in list.Entries.Where(i => i.IsFolder))
             {
                 int pos = item.PathDisplay.LastIndexOf("/");
@@ -106,13 +108,40 @@ namespace Dropbox_API
                     node[0].Nodes.Add(names[1], names[1]);
                     treeView1.EndUpdate();
                 }
-                // TreeNode [] q = root[0].Nodes.Find("Folder1", false);
-                //treeView1.Nodes.Find(tmp,false);
-                //   new TreeNode("sad");
-                // q.n
-                // int w = 0;
-                // Console.WriteLine("F{0,8} {1}", item.AsFile.Size, item.Name);
+                treeView1.ExpandAll();
+               
             }
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CreateDir cd = new CreateDir();
+                string path = treeView1.SelectedNode.FullPath;
+                path = path.Replace("\\", "/");
+                path = path.Remove(0, 4);
+                if (cd.ShowDialog(this) == DialogResult.OK)
+                {
+                    if(cd.richTextBox1.Text.Equals(string.Empty))
+                        MessageBox.Show("Directory name cant be empty", "Error", MessageBoxButtons.OK);
+                    else
+                    path +="/" + cd.richTextBox1.Text;
+                }
+                toolStripStatusLabel1.Text = "Creating directory...";
+                FolderMetadata metadata = await client.Files.CreateFolderAsync(new CreateFolderArg(path));
+                if(!metadata.Name.Equals(string.Empty))
+                    toolStripStatusLabel1.Text = "Creating directory succeed!";
+                button3_Click(sender, e);
+                //cd.Close();
+                cd.Dispose();
+            }
+            catch(NullReferenceException er)
+            {
+              
+                MessageBox.Show("Choose branch were to create dir first ", "Error", MessageBoxButtons.OK);
+            }
+
         }
     }
 }
