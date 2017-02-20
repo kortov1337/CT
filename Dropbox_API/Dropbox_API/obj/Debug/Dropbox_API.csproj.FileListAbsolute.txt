@@ -12,3 +12,4 @@ D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.csproj.GenerateRe
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.exe
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.pdb
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.CreateDir.resources
+d:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.Form2.resources
