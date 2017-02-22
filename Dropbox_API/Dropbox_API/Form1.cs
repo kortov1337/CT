@@ -20,6 +20,8 @@ namespace Dropbox_API
         static string token = "X0maJoW9_aAAAAAAAAAACZbATZubjd0vm52xwTvrROQEl-6Pc0yl-K-Gm9Bk5UYi";
         static DropboxClient client = new DropboxClient(token);
         static public List<string> namesCollection = new List<string>();
+        static public List<string> namesCollection2 = new List<string>();
+        ListFolderResult list;
         bool fromReady = false;
         bool toReady = false;
         string from = "";
@@ -38,7 +40,7 @@ namespace Dropbox_API
             return new Regex("/").Matches(path).Count;
         }
 
-        public string[] getNodeName(string path,int pos)
+        public string[] getChildParent(string path,int pos)
         {
             int slashes = countSlashes(path);
             string [] res=new string[slashes];
@@ -50,6 +52,12 @@ namespace Dropbox_API
             res[0] = path.Substring(spos , path.Length-spos);
             return res;
            
+        }
+
+        public string getNodeName(string path)
+        {
+            int pos = path.LastIndexOf("/");
+            return path.Substring(pos + 1, path.Length - pos - 1);
         }
 
         public Form1()
@@ -78,8 +86,7 @@ namespace Dropbox_API
 
         private void Form1_Load(object sender, EventArgs e)
         {           
-            tabControl1_Click(sender, e);
-           
+            tabControl1_Click(sender, e);           
         }
         //get storage status
         private async void button2_Click(object sender, EventArgs e)
@@ -96,13 +103,15 @@ namespace Dropbox_API
         private async void button3_Click(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = "Getting folders list ...";
-            ListFolderResult list = await client.Files.ListFolderAsync(new ListFolderArg(string.Empty, true));
+            list = await client.Files.ListFolderAsync(new ListFolderArg(string.Empty, true));
             if (list != null)
                 toolStripStatusLabel1.Text = "Getting folders list succeed!";
             TreeNode [] root = treeView1.Nodes.Find("root", false);
             root[0].Nodes.Clear();
+            comboBox1.Items.Clear();
             namesCollection.Clear();
             namesCollection.Add("/");
+            
             foreach (var item in list.Entries.Where(i => i.IsFolder))
             {
                 namesCollection.Add(item.PathDisplay);
@@ -115,17 +124,12 @@ namespace Dropbox_API
                 }
                 else
                 {
-
-
-                    string [] names = getNodeName(item.PathDisplay, pos);
-                   // parsePath(item.PathDisplay, root);
+                    string [] names = getChildParent(item.PathDisplay, pos);
                     TreeNode[] node = root[0].Nodes.Find(names[0], true);
                     treeView1.BeginUpdate();
                     node[0].Nodes.Add(names[1], names[1]);
                     treeView1.EndUpdate();
                 }
-                //listBox1.Items.Add(item.PathDisplay);
-
             }
 
               foreach (var item in list.Entries.Where(i => i.IsFile))
@@ -139,7 +143,7 @@ namespace Dropbox_API
                   }
                   else
                   {
-                      string[] names = getNodeName(item.PathDisplay, pos);
+                      string[] names = getChildParent(item.PathDisplay, pos);
 
                       TreeNode[] node = root[0].Nodes.Find(names[0], true);
                      
@@ -213,8 +217,13 @@ namespace Dropbox_API
                         to+="/" + treeView1.SelectedNode.Name;
                 
                 from = from.Remove(0, 4);
-                from = from.Replace("\\", "/");                
-                fromReady = true;
+                from = from.Replace("\\", "/");
+                Metadata data = list.Entries.First(q => q.Name == treeView2.SelectedNode.Name);
+                if (data.IsFolder)
+                   fromReady = true;
+                else
+                   MessageBox.Show("Choose directory, not file", "Error", MessageBoxButtons.OK);
+                    fromReady = true;
                 }
   
                 if (fromReady&&toReady)
@@ -239,12 +248,16 @@ namespace Dropbox_API
         private void button6_Click(object sender, EventArgs e)
         {
             string path = treeView1.SelectedNode.FullPath;
-            if (!path.Equals(string.Empty))
+            if (!path.Equals(string.Empty)&& list.Entries.First(q => q.Name == treeView1.SelectedNode.Name).IsFolder)
             {
+               /* Metadata md = ;
+                if (md.IsFolder)
+                {*/ 
                 path = path.Remove(0, 4);
                 path = path.Replace("\\", "/");
                 Delete(path);
                 button3_Click(sender, e);
+                //}
             }
                
             else
@@ -256,7 +269,182 @@ namespace Dropbox_API
             to = comboBox1.SelectedItem.ToString();
             toReady = true;       
         }
-
       
+        //get all files
+        private async void button7_Click(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text = "Getting folders list ...";
+            list = await client.Files.ListFolderAsync(new ListFolderArg(string.Empty, true));
+            if (list != null)
+                toolStripStatusLabel1.Text = "Getting folders list succeed!";
+            TreeNode[] root = treeView2.Nodes.Find("root", false);
+            root[0].Nodes.Clear();
+            namesCollection2.Clear();
+            namesCollection2.Add("/");
+            foreach (var item in list.Entries.Where(i => i.IsFolder))
+            {
+                namesCollection2.Add(item.PathDisplay);
+                int pos = item.PathDisplay.LastIndexOf("/");
+                if (pos == 0)
+                {
+                    treeView2.BeginUpdate();
+                    root[0].Nodes.Add(item.Name, item.Name);
+                    treeView2.EndUpdate();
+                }
+                else
+                {
+                    string[] names = getChildParent(item.PathDisplay, pos);
+                    // parsePath(item.PathDisplay, root);
+                    TreeNode[] node = root[0].Nodes.Find(names[0], true);
+                    treeView2.BeginUpdate();
+                    node[0].Nodes.Add(names[1], names[1]);
+                    treeView2.EndUpdate();
+                }
+            }          
+
+            foreach (var item in list.Entries.Where(i => i.IsFile))
+            {
+                int pos = item.PathDisplay.LastIndexOf("/");
+                if (pos == 0)
+                {
+                    treeView2.BeginUpdate();
+                    root[0].Nodes.Add(item.Name, item.Name);
+                    treeView2.EndUpdate();
+                }
+                else
+                {
+                    string[] names = getChildParent(item.PathDisplay, pos);
+
+                    TreeNode[] node = root[0].Nodes.Find(names[0], true);
+
+                  //  if (node.Length == 1)
+                    //{
+                        treeView2.BeginUpdate();
+                        node[0].Nodes.Add(names[1], names[1]);
+                        treeView2.EndUpdate();
+                  //  }
+                  //  else
+                  //  {
+
+                    //}
+                }
+
+
+            }
+            treeView2.ExpandAll();
+            foreach (string q in namesCollection2)
+            {
+                comboBox2.Items.Add(q);
+                comboBox3.Items.Add(q);
+            }
+
+        }
+        //move file
+        private async void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                from = treeView2.SelectedNode.FullPath;
+                if (!from.Equals(string.Empty))
+                {
+                    if (to == "/")
+                        to += treeView2.SelectedNode.Name;
+                    else
+                        to += "/" + treeView2.SelectedNode.Name;
+
+                    from = from.Remove(0, 4);
+                    from = from.Replace("\\", "/");
+                    Metadata data = list.Entries.First(q => q.Name == treeView2.SelectedNode.Name);
+                    if(data.IsFile)
+                    fromReady = true;
+                    else
+                        MessageBox.Show("Choose file, not directory", "Error", MessageBoxButtons.OK);
+                }
+
+                if (fromReady && toReady)
+                {
+                    toolStripStatusLabel1.Text = "Moving file...";
+                    Metadata data = await client.Files.MoveAsync(from, to, true, true);
+                    if (data != null)
+                        toolStripStatusLabel1.Text = "Move file succeed!";
+                    button7_Click(sender, e);
+
+                }
+                else
+                    MessageBox.Show("Choose were from in tree and were to move folder in dropdown list ", "Error", MessageBoxButtons.OK);
+
+            }
+            catch (NullReferenceException er)
+            {
+                MessageBox.Show("Choose were from in tree and were to move folder in dropdown list", "Error", MessageBoxButtons.OK);
+            }
+        }
+        //delete file
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string path = treeView2.SelectedNode.FullPath;
+            if (!path.Equals(string.Empty)&& list.Entries.First(q => q.Name == treeView2.SelectedNode.Name).IsFile)
+            {
+                path = path.Remove(0, 4);
+                path = path.Replace("\\", "/");
+                Delete(path);
+                button7_Click(sender, e);
+            }
+
+            else
+                MessageBox.Show("Choose which dir to delete", "Error", MessageBoxButtons.OK);
+        }
+
+        private void comboBox2_SelectedValueChanged(object sender, EventArgs e)
+        {
+            to = comboBox2.SelectedItem.ToString();
+            toReady = true;
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            to = comboBox3.SelectedItem.ToString();
+            toReady = true;
+        }
+        //copy file
+        private async void button10_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                from = treeView2.SelectedNode.FullPath;
+                if (!from.Equals(string.Empty))
+                {
+                    if (to == "/")
+                        to += treeView2.SelectedNode.Name;
+                    else
+                        to += "/" + treeView2.SelectedNode.Name;
+
+                    from = from.Remove(0, 4);
+                    from = from.Replace("\\", "/");
+                    Metadata data = list.Entries.First(q => q.Name == treeView2.SelectedNode.Name);
+                    if (data.IsFile)
+                        fromReady = true;
+                    else
+                        MessageBox.Show("Choose file, not directory", "Error", MessageBoxButtons.OK);
+                }
+
+                if (fromReady && toReady)
+                {
+                    toolStripStatusLabel1.Text = "Moving file...";
+                    Metadata data = await client.Files.CopyAsync(from, to, true, true);
+                    if (data != null)
+                        toolStripStatusLabel1.Text = "Move file succeed!";
+                    button7_Click(sender, e);
+
+                }
+                else
+                    MessageBox.Show("Choose were from in tree and were to move folder in dropdown list ", "Error", MessageBoxButtons.OK);
+
+            }
+            catch (NullReferenceException er)
+            {
+                MessageBox.Show("Choose were from in tree and were to copy folder in dropdown list", "Error", MessageBoxButtons.OK);
+            }
+        }
     }
 }
