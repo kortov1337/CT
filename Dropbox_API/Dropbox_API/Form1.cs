@@ -12,6 +12,7 @@ using Dropbox.Api.Users;
 using Dropbox.Api.Files;
 using Dropbox.Api.Files.Routes;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace Dropbox_API
 {
@@ -57,6 +58,12 @@ namespace Dropbox_API
         public string getNodeName(string path)
         {
             int pos = path.LastIndexOf("/");
+            return path.Substring(pos + 1, path.Length - pos - 1);
+        }
+
+        public string getFileName(string path)
+        {
+            int pos = path.LastIndexOf("\\");
             return path.Substring(pos + 1, path.Length - pos - 1);
         }
 
@@ -445,6 +452,46 @@ namespace Dropbox_API
             {
                 MessageBox.Show("Choose were from in tree and were to copy folder in dropdown list", "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private async void button11_Click(object sender, EventArgs e)
+        {
+            from = treeView2.SelectedNode.FullPath;
+            if (!from.Equals(string.Empty))
+            {
+                from = from.Remove(0, 4);
+                from = from.Replace("\\", "/");
+                
+                var fileData = await client.Files.DownloadAsync(from);
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName=getNodeName(from);
+               // sfd.Filter = "Text Files | *.txt PDF Files | *.pdf, MP3 | *.mp3 ";
+                sfd.ShowDialog();
+                if(!sfd.FileName.Equals(string.Empty)&& list.Entries.First(q => q.Name == treeView2.SelectedNode.Name).IsFile)
+                {
+                    toolStripStatusLabel1.Text = "Downloading file...";
+                    byte[] data = await fileData.GetContentAsByteArrayAsync();
+                    toolStripStatusLabel1.Text = "Saving file...";
+                    File.WriteAllBytes(sfd.FileName, data);
+                }
+            }
+            else
+                MessageBox.Show("Choose file, not directory", "Error", MessageBoxButtons.OK);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            from = treeView2.SelectedNode.FullPath;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            
+            if (!from.Equals(string.Empty))
+            {
+                from = from.Remove(0, 4);
+                from = from.Replace("\\", "/");
+                from += Path.GetFileName(ofd.FileName);
+            }
+
         }
     }
 }
