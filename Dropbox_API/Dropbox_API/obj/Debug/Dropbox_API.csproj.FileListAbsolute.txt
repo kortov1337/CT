@@ -13,3 +13,5 @@ D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.exe
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.pdb
 D:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.CreateDir.resources
 d:\Лабы\ОТ\Dropbox_API\Dropbox_API\obj\Debug\Dropbox_API.Form2.resources
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\AutoMapper.dll
+D:\Лабы\ОТ\Dropbox_API\Dropbox_API\bin\Debug\AutoMapper.xml
