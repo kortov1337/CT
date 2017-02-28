@@ -24,6 +24,13 @@ namespace MSQMConsole
         public string publishingHouse { get; set; }
         public string binding { get; set; }
 
+        public string Print()
+        {
+            return Environment.NewLine + "Title: " + title + Environment.NewLine + "Author: " + author + Environment.NewLine + "Branch of science: "
+                + branchOfScience + Environment.NewLine + "Number of pages: " + numberOfPage + Environment.NewLine +
+                "Publishing house: " + publishingHouse + Environment.NewLine + "Binding: " + binding + Environment.NewLine;
+        }
+
         public override string ToString()
         {
             return Environment.NewLine + "Title: " + title + Environment.NewLine + "Author: " + author + Environment.NewLine + "Branch of science: "

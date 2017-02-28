@@ -38,19 +38,31 @@ namespace MSQMClient1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Book book = new Book(
-                textBox1.Text, 
-                textBox2.Text, 
-                textBox3.Text, 
-                Convert.ToInt32(textBox4.Text), 
-                textBox5.Text, 
+            try
+            {
+                Book book = new Book(
+                textBox1.Text,
+                textBox2.Text,
+                textBox3.Text,
+                Convert.ToInt32(textBox4.Text),
+                textBox5.Text,
                 textBox6.Text);
-            string name = listBox1.SelectedItem.ToString();
-            int pos = name.LastIndexOf("\\");
-            name = name.Substring(pos + 1, name.Length - pos - 1);
-            MhQueue queue = new MhQueue(name);
-             
-            queue.Send(book);
+                if (listBox1.SelectedItem != null)
+                {
+                    string name = listBox1.SelectedItem.ToString();
+                    int pos = name.LastIndexOf("\\");
+                    name = name.Substring(pos + 1, name.Length - pos - 1);
+                    MhQueue queue = new MhQueue(name);
+
+                    queue.Send(book);
+                }
+                else MessageBox.Show("Choose queue");
+                    
+            }
+            catch(Exception er)
+            {
+
+            }
 
         }
     }

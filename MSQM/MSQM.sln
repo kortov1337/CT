@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSQMConsole", "Console\MSQM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSQMClient1", "MSQMClient1\MSQMClient1.csproj", "{E914190B-A4CE-48C5-A761-D8AB6402EA7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSQMClient2", "MSQMClient2\MSQMClient2.csproj", "{82E90AA5-61CE-4680-8C95-54C89C76642D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E914190B-A4CE-48C5-A761-D8AB6402EA7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E914190B-A4CE-48C5-A761-D8AB6402EA7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E914190B-A4CE-48C5-A761-D8AB6402EA7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82E90AA5-61CE-4680-8C95-54C89C76642D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82E90AA5-61CE-4680-8C95-54C89C76642D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82E90AA5-61CE-4680-8C95-54C89C76642D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82E90AA5-61CE-4680-8C95-54C89C76642D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
