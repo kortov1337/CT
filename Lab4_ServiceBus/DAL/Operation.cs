@@ -14,14 +14,31 @@ namespace DAL
         public Operation(BooksModels newItem,string operationType, int id)
         {
             this.body = newItem;
-            this.operationType = operationType;
+            this.OperationType = operationType;
             this.Id = id;
         }
         [DataMember]
         internal BooksModels body;
         [DataMember]
-        internal string operationType;
+        private string operationType;
         [DataMember]
         internal int Id =-1;
+
+        internal string OperationType
+        {
+            get
+            {
+                return operationType;
+            }
+
+            set
+            {
+                operationType = value;
+            }
+        }
+        public override string ToString()
+        {
+            return "Author: " + body.author + " Title: " + body.title;
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace Server
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
             //AsyncMain().GetAwaiter().GetResult();
-            BusUsage.Stop();
+           // BusUsage.Stop().GetAwaiter().GetResult();
         }
 
      

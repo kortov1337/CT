@@ -8,17 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using DAL;
 using Client1.Models;
+using Client1.DAL;
 
 namespace Client1.Controllers
 {
     public class BooksModelsController : Controller
     {
-       // private BooksContext db = new BooksContext();
+        private BooksContext db = new BooksContext();
         UnitOfWork unitOfWork = new UnitOfWork();
         // GET: BooksModels
         public BooksModelsController()
         {
-           // unitOfWork = new UnitOfWork();
+            unitOfWork = new UnitOfWork();
         }
         public ActionResult Index()
         {
@@ -59,10 +60,10 @@ namespace Client1.Controllers
             if (ModelState.IsValid)
             {
                 unitOfWork.Books.CreateDist(booksModels);
-                //unitOfWork.Books.Create(booksModels);
-                // db.Books.Add(booksModels);
-                //db.SaveChanges();
-              //  unitOfWork.Save();
+                unitOfWork.Books.Create(booksModels);
+                db.Books.Add(booksModels);
+                db.SaveChanges();
+                unitOfWork.Save();
                 return RedirectToAction("Index");
             }
 
@@ -95,8 +96,8 @@ namespace Client1.Controllers
             {
                 unitOfWork.Books.Update(booksModels);
                 unitOfWork.Save();
-                /*db.Entry(booksModels).State = EntityState.Modified;
-                db.SaveChanges();*/
+                db.Entry(booksModels).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(booksModels);
@@ -122,11 +123,11 @@ namespace Client1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            //BooksModels booksModels = unitOfWork.Books.Get(id);
+            BooksModels booksModels = unitOfWork.Books.Get(id);
             unitOfWork.Books.Delete(id);
             unitOfWork.Save();
-            //db.Books.Remove(booksModels);
-           // db.SaveChanges();
+            db.Books.Remove(booksModels);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -135,7 +136,7 @@ namespace Client1.Controllers
             if (disposing)
             {
                 unitOfWork.Dispose();
-                //db.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }
