@@ -60,11 +60,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusUsage\BusUsage.csproj">
-      <Project>{dd552ac1-7b33-4950-9576-f371dcb8e411}</Project>
-      <Name>BusUsage</Name>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{eef30ba1-c2f5-486c-98ea-8b3fde6bcb9e}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\BusStuff\BusStuff.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

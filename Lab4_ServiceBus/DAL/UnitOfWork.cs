@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Client1.DAL;
+using Client1.DBContext;
 
 namespace DAL
 {
@@ -11,6 +11,7 @@ namespace DAL
     {
         
         private BooksContext db = new BooksContext();
+
         private BookRepository bookRepository;
 
         public BookRepository Books

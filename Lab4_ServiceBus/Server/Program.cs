@@ -19,7 +19,7 @@ namespace Server
 
         static void Main(string[] args)
         {
-            BusUsage.InitServerEndpoint(endpointName).GetAwaiter().GetResult();
+            BusStuff.InitServerEndpoint(endpointName).GetAwaiter().GetResult();
             //BusUsage.Send(endpointName);
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();

@@ -1,0 +1,9 @@
+﻿2017-03-11 12:02:47.402 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:05:00.318 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:12:22.066 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:20:20.860 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:23:34.760 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:28:36.190 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:31:59.531 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:39:44.556 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 12:46:24.844 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info

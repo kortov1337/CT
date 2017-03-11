@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using Client1.Models;
 
-namespace Client1.DAL
+namespace Client1.DBContext
 {
     public class BooksInitilizer
     {

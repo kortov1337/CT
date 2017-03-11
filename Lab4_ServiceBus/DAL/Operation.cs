@@ -11,20 +11,17 @@ namespace DAL
     [DataContract]
     public class Operation
     {
-        public Operation(BooksModels newItem,string operationType, int id)
+        public Operation(BooksModels newItem,string operationType)
         {
             this.body = newItem;
             this.OperationType = operationType;
-            this.Id = id;
         }
         [DataMember]
-        internal BooksModels body;
+        public BooksModels body;
         [DataMember]
         private string operationType;
-        [DataMember]
-        internal int Id =-1;
-
-        internal string OperationType
+       
+        public string OperationType
         {
             get
             {
@@ -38,7 +35,7 @@ namespace DAL
         }
         public override string ToString()
         {
-            return "Author: " + body.author + " Title: " + body.title;
+            return "Author: " + body.author + "Title: " + body.title;
         }
     }
 }

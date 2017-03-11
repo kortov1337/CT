@@ -10,7 +10,8 @@ using System.Runtime.Serialization.Json;
 using System.IO;
 using System.Text;
 using DAL;
-public class BusUsage
+
+public class BusStuff
 {
     static IReceivingRawEndpoint serverEndpoint;
     static IReceivingRawEndpoint subscriber1Endpoint;
@@ -30,13 +31,13 @@ public class BusUsage
         }
     }
 
-    public async static Task InitSubOneEndpoint(string endpointName)
+    public async static Task InitSubOneEndpoint(string endpointName, Func<MessageContext,IDispatchMessages,Task> func)
     {
         if (subscriber1Endpoint == null)
         {
             var senderConfig = RawEndpointConfiguration.Create(
             endpointName: endpointName,
-            onMessage: Sub1OnMessage,
+            onMessage: func,
             poisonMessageQueue: "error");
             senderConfig.UseTransport<MsmqTransport>();
             senderConfig.AutoCreateQueue();
@@ -44,7 +45,7 @@ public class BusUsage
                  .ConfigureAwait(false);
         }
     }
-    
+
     public static async Task SendToSubscriber1(MessageContext context, IReceivingRawEndpoint endpoint)
     {
         var headers = context.Headers;
@@ -64,12 +65,12 @@ public class BusUsage
            .ConfigureAwait(false);
     }
 
-    public static async Task SendCreate(string recv, Operation op)
+    public static Task SendCreate(string recv, Operation op)
     {
         var body = Serialize(op);
         var headers = new Dictionary<string, string>
         {
-            ["Create"] = "Create",
+            ["Operation"] = "Create",
             ["To"] = "Subscriber1"
         };
         var request = new OutgoingMessage(
@@ -81,38 +82,80 @@ public class BusUsage
             request,
             new UnicastAddressTag(recv));
 
-        await serverEndpoint.Dispatch(
+         serverEndpoint.Dispatch(
                outgoingMessages: new TransportOperations(operation),
                transaction: new TransportTransaction(),
                context: new ContextBag())
            .ConfigureAwait(false);
+        return Task.CompletedTask;
+    }
+
+    public static Task SendDelete(string recv, Operation op)
+    {
+        var body = Serialize(op);
+        var headers = new Dictionary<string, string>
+        {
+            ["Operation"] = "Delete",
+            ["To"] = "Subscriber1"
+        };
+        var request = new OutgoingMessage(
+            messageId: Guid.NewGuid().ToString(),
+            headers: headers,
+            body: body);
+
+        var operation = new TransportOperation(
+            request,
+            new UnicastAddressTag(recv));
+
+        serverEndpoint.Dispatch(
+              outgoingMessages: new TransportOperations(operation),
+              transaction: new TransportTransaction(),
+              context: new ContextBag())
+          .ConfigureAwait(false);
+        return Task.CompletedTask;
+    }
+
+    public static Task Send(string servName, Operation op)
+    {
+        var body = Serialize(op);
+        var headers = new Dictionary<string, string>
+        {
+            ["Operation"] = op.OperationType,
+            ["To"] = "Subscriber1"
+        };
+        var request = new OutgoingMessage(
+            messageId: Guid.NewGuid().ToString(),
+            headers: headers,
+            body: body);
+
+        var operation = new TransportOperation(
+            request,
+            new UnicastAddressTag(servName));
+
+        serverEndpoint.Dispatch(
+              outgoingMessages: new TransportOperations(operation),
+              transaction: new TransportTransaction(),
+              context: new ContextBag())
+          .ConfigureAwait(false);
+        return Task.CompletedTask;
     }
 
     static Task OnMessage(MessageContext context, IDispatchMessages dispatcher)
     {
         var h = context.Headers;
         var b = context.Body;
-        var message = Deserialize(context.Body);      
-        string create = "", destination = "";
-             
-        if(h.TryGetValue("Create", out create))
-        {
-            if(h.TryGetValue("To", out destination))
-                {
-                InitSubOneEndpoint("Subscriber1").GetAwaiter().GetResult();
-                SendToSubscriber1(context, subscriber1Endpoint).GetAwaiter().GetResult(); 
-                    Console.WriteLine("Header: " + h["Create"] + " " + message.ToString() +" Destination: " + destination);
-                    Logger.WriteLog("Header: " + h["Create"] + " " + message.ToString() + " Destination: " + destination);
-                }
-        }
-        return Task.CompletedTask;
-    }
-
-    static Task Sub1OnMessage(MessageContext context, IDispatchMessages dispatcher)
-    {
-        var b = context.Body;
         var message = Deserialize(context.Body);
-        messagesQueue.Add(message);
+        string operation = "", destination = "";
+
+        if (h.TryGetValue("Operation", out operation))
+        {
+          if (h.TryGetValue("To", out destination))
+            {
+                InitSubOneEndpoint("Subscriber1", null).GetAwaiter().GetResult();
+                SendToSubscriber1(context, subscriber1Endpoint).GetAwaiter().GetResult();
+                Logger.WriteLog("Header: " + operation + " " + message.ToString() + " Destination: " + destination);
+            }      
+        }
         return Task.CompletedTask;
     }
 
@@ -126,21 +169,20 @@ public class BusUsage
         return messagesQueue;
     }
 
-    static byte[] Serialize(object item)
+    public static byte[] Serialize(object item)
     {
         MemoryStream stream1 = new MemoryStream();
         DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Operation));
         ser.WriteObject(stream1, item);
         stream1.Position = 0;
-        StreamReader sr = new StreamReader(stream1);
-        var res = Encoding.ASCII.GetBytes(sr.ReadToEnd());
+        StreamReader sr = new StreamReader(stream1);       
+        var res = Encoding.UTF8.GetBytes(sr.ReadToEnd());
         stream1.Close();
         return res;
     }
 
-    static Operation Deserialize(byte[] item)
+    public static Operation Deserialize(byte[] item)
     {
-        Encoding.ASCII.GetString(item);
         MemoryStream stream1 = new MemoryStream(item);
         stream1.Position = 0;
         DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Operation));
