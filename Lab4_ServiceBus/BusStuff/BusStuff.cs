@@ -15,6 +15,7 @@ public class BusStuff
 {
     static IReceivingRawEndpoint serverEndpoint;
     static IReceivingRawEndpoint subscriber1Endpoint;
+    static IReceivingRawEndpoint subscriber2Endpoint;
     static List<Operation> messagesQueue = new List<Operation>();
 
     public static async Task InitServerEndpoint(string endpointName)
@@ -46,7 +47,22 @@ public class BusStuff
         }
     }
 
-    public static async Task SendToSubscriber1(MessageContext context, IReceivingRawEndpoint endpoint)
+    public async static Task InitSubTwoEndpoint(string endpointName, Func<MessageContext, IDispatchMessages, Task> func)
+    {
+        if (subscriber2Endpoint == null)
+        {
+            var senderConfig = RawEndpointConfiguration.Create(
+            endpointName: endpointName,
+            onMessage: func,
+            poisonMessageQueue: "error");
+            senderConfig.UseTransport<MsmqTransport>();
+            senderConfig.AutoCreateQueue();
+            subscriber2Endpoint = await RawEndpoint.Start(senderConfig)
+                 .ConfigureAwait(false);
+        }
+    }
+
+    public static async Task SendToSubscriber(MessageContext context, IReceivingRawEndpoint endpoint)
     {
         var headers = context.Headers;
         var request = new OutgoingMessage(
@@ -63,56 +79,6 @@ public class BusStuff
                transaction: new TransportTransaction(),
                context: new ContextBag())
            .ConfigureAwait(false);
-    }
-
-    public static Task SendCreate(string recv, Operation op)
-    {
-        var body = Serialize(op);
-        var headers = new Dictionary<string, string>
-        {
-            ["Operation"] = "Create",
-            ["To"] = "Subscriber1"
-        };
-        var request = new OutgoingMessage(
-            messageId: Guid.NewGuid().ToString(),
-            headers: headers,
-            body: body);
-
-        var operation = new TransportOperation(
-            request,
-            new UnicastAddressTag(recv));
-
-         serverEndpoint.Dispatch(
-               outgoingMessages: new TransportOperations(operation),
-               transaction: new TransportTransaction(),
-               context: new ContextBag())
-           .ConfigureAwait(false);
-        return Task.CompletedTask;
-    }
-
-    public static Task SendDelete(string recv, Operation op)
-    {
-        var body = Serialize(op);
-        var headers = new Dictionary<string, string>
-        {
-            ["Operation"] = "Delete",
-            ["To"] = "Subscriber1"
-        };
-        var request = new OutgoingMessage(
-            messageId: Guid.NewGuid().ToString(),
-            headers: headers,
-            body: body);
-
-        var operation = new TransportOperation(
-            request,
-            new UnicastAddressTag(recv));
-
-        serverEndpoint.Dispatch(
-              outgoingMessages: new TransportOperations(operation),
-              transaction: new TransportTransaction(),
-              context: new ContextBag())
-          .ConfigureAwait(false);
-        return Task.CompletedTask;
     }
 
     public static Task Send(string servName, Operation op)
@@ -152,7 +118,9 @@ public class BusStuff
           if (h.TryGetValue("To", out destination))
             {
                 InitSubOneEndpoint("Subscriber1", null).GetAwaiter().GetResult();
-                SendToSubscriber1(context, subscriber1Endpoint).GetAwaiter().GetResult();
+                InitSubTwoEndpoint("Subscriber2", null).GetAwaiter().GetResult();
+                SendToSubscriber(context, subscriber1Endpoint).GetAwaiter().GetResult();
+                SendToSubscriber(context, subscriber2Endpoint).GetAwaiter().GetResult();
                 Logger.WriteLog("Header: " + operation + " " + message.ToString() + " Destination: " + destination);
             }      
         }
@@ -189,6 +157,11 @@ public class BusStuff
         var res = (Operation)ser.ReadObject(stream1);
         stream1.Close();
         return res;
+    }
+
+    public static void LogCall(string info)
+    {
+        Logger.WriteLog(info);
     }
 }
 

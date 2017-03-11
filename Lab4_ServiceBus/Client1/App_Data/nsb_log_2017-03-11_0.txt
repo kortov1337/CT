@@ -7,3 +7,19 @@
 2017-03-11 12:31:59.531 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
 2017-03-11 12:39:44.556 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
 2017-03-11 12:46:24.844 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 13:44:27.114 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 13:47:38.884 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 13:50:18.466 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 13:53:09.906 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 13:59:05.109 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 14:00:09.261 ERROR NServiceBus.MessagePump MSMQ Message pump failed
+System.Threading.ThreadAbortException: Поток находился в процессе прерывания.
+   в NServiceBus.MessagePump.<InnerProcessMessages>d__6.MoveNext() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 135
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в NServiceBus.MessagePump.<ProcessMessages>d__5.MoveNext() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 106
+2017-03-11 14:00:09.280 WARN  NServiceBus.RepeatedFailuresOverTimeCircuitBreaker The circuit breaker for MsmqPeek is now in the armed state
+2017-03-11 14:05:14.460 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 14:11:22.648 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-11 14:18:07.254 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info

@@ -19,6 +19,7 @@ namespace Subscriber1
         static List<DAL.Operation> messagesQueue = new List<DAL.Operation>();
         static public RichTextBox rtb;
         static UnitOfWork unit;
+        static string operation = "",body="";
         public Form1()
         {
             InitializeComponent();
@@ -30,11 +31,9 @@ namespace Subscriber1
         {
             rtb.Text = ""; 
            foreach(Operation o in messagesQueue)
-            {
-                
+            {               
                 rtb.Text +=o.OperationType + ": " + o.ToString() + Environment.NewLine;
             }
-
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -44,43 +43,54 @@ namespace Subscriber1
 
         public static Task OnMessage(MessageContext context, IDispatchMessages dispatcher)
         {
-            var b = context.Body;
-            var message = BusStuff.Deserialize(context.Body);
-            switch (message.OperationType)
+            try
             {
-                case "Create":
-                    {
-                        using (TransactionScope sc = new TransactionScope(TransactionScopeOption.Suppress))
+                var b = context.Body;
+                var message = BusStuff.Deserialize(context.Body);
+                operation = message.OperationType;
+                body = message.ToString();
+                switch (message.OperationType)
+                {
+                    case "Create":
                         {
-                            unit.Books.Create(message.body);
-                            unit.Save();
-                            messagesQueue.Add(message);
-                        }
+                            using (TransactionScope sc = new TransactionScope(TransactionScopeOption.Suppress))
+                            {
+                                unit.Books.Create(message.body);
+                                unit.Save();
+                                messagesQueue.Add(message);
+                            }
                             break;
-                    }
-                case "Delete":
-                    {
-                        using (TransactionScope sc = new TransactionScope(TransactionScopeOption.Suppress))
-                        {
-                            unit.Books.Delete(message.body.Id);
-                            unit.Save();
-                            messagesQueue.Add(message);
                         }
-                        break;
-                    }
-                case "Update":
-                    {
-                        using (TransactionScope sc = new TransactionScope(TransactionScopeOption.Suppress))
+                    case "Delete":
                         {
-                            unit.Books.Update(message.body);
-                            unit.Save();
-                            messagesQueue.Add(message);
+                            using (TransactionScope sc = new TransactionScope(TransactionScopeOption.Suppress))
+                            {
+                                unit.Books.Delete(message.body.Id);
+                                unit.Save();
+                                messagesQueue.Add(message);
+                            }
+                            break;
                         }
-                        break;
-                    }
-            }
+                    case "Update":
+                        {
+                            using (TransactionScope sc = new TransactionScope(TransactionScopeOption.Suppress))
+                            {
+                                unit.Books.Update(message.body);
+                                unit.Save();
+                                messagesQueue.Add(message);
+                            }
+                            break;
+                        }
+                }
 
-            return Task.CompletedTask;
+                return Task.CompletedTask;
+            }
+            catch(Exception er)
+            {
+                MessageBox.Show(er.Message);
+                BusStuff.LogCall("Operation " + operation + " for " + body + " failed");
+                return Task.CompletedTask;
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace DAL
         }
         public override string ToString()
         {
-            return "Author: " + body.author + "Title: " + body.title;
+            return "Author: " + body.author + " Title: " + body.title;
         }
     }
 }
