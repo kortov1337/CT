@@ -1,0 +1,66 @@
+﻿@model Client1.Models.BooksModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BooksModels</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.branchOfScience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.branchOfScience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfPage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfPage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.publishingHouse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.publishingHouse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.binding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.binding)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

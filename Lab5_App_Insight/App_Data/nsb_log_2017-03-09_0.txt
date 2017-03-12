@@ -1,0 +1,82 @@
+﻿2017-03-09 00:46:14.237 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 00:48:52.255 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:07:59.456 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:11:57.411 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:14:20.208 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:37:30.494 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:40:17.916 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:41:22.095 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:43:01.535 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:44:57.237 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:46:48.560 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:54:03.249 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:57:02.031 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 01:59:27.309 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 02:02:41.539 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 02:04:48.136 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 02:07:14.622 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 10:16:41.127 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 10:34:45.533 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 10:36:20.533 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 10:46:02.827 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 10:49:18.802 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 10:55:41.482 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 11:01:27.115 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 11:03:48.508 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 11:09:20.366 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 11:12:36.467 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 15:37:28.476 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 15:40:34.844 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 15:44:26.053 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 15:52:10.257 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 15:54:00.808 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 15:57:08.505 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 16:08:39.898 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 16:14:18.452 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 16:16:18.255 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 16:20:03.836 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 16:23:10.843 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 16:54:50.392 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 17:48:42.489 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 17:49:24.528 ERROR NServiceBus.Raw.StartableRawEndpoint Receiver failed to initialize.
+System.InvalidOperationException: There is a problem with the input inputQueue: FormatName:DIRECT=OS:FUFEL-PC\private$\Subscriber1. See the enclosed exception for details. ---> System.Messaging.MessageQueueException: Очередь не существует, или отсутствуют достаточные полномочия для выполнения операции.
+   в System.Messaging.MessageQueue.MQCacheableInfo.get_Transactional()
+   в System.Messaging.MessageQueue.get_Transactional()
+   в NServiceBus.MessagePump.QueueIsTransactional() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 204
+   --- Конец трассировки внутреннего стека исключений ---
+   в NServiceBus.MessagePump.QueueIsTransactional() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 208
+   в NServiceBus.MessagePump.Init(Func`2 onMessage, Func`2 onError, CriticalError criticalError, PushSettings settings) в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 43
+   в NServiceBus.Raw.RawTransportReceiver.Init() в C:\BuildAgent\work\1f80a90dcd7c141d\src\NServiceBus.Raw\RawTransportReceiver.cs:строка 23
+   в NServiceBus.Raw.StartableRawEndpoint.<InitializeReceiver>d__11.MoveNext() в C:\BuildAgent\work\1f80a90dcd7c141d\src\NServiceBus.Raw\StartableRawEndpoint.cs:строка 0
+2017-03-09 17:51:53.467 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 18:16:39.323 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 18:19:58.539 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 18:23:27.842 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 18:41:09.441 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 18:41:27.294 ERROR NServiceBus.MessagePump MSMQ Message pump failed
+System.Threading.ThreadAbortException: Поток находился в процессе прерывания.
+   в NServiceBus.MessagePump.<InnerProcessMessages>d__6.MoveNext() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 135
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в NServiceBus.MessagePump.<ProcessMessages>d__5.MoveNext() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 106
+2017-03-09 18:41:27.386 WARN  NServiceBus.RepeatedFailuresOverTimeCircuitBreaker The circuit breaker for MsmqPeek is now in the armed state
+2017-03-09 18:53:12.766 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 18:53:37.474 ERROR NServiceBus.MessagePump MSMQ Message pump failed
+System.Threading.ThreadAbortException: Поток находился в процессе прерывания.
+   в NServiceBus.MessagePump.<InnerProcessMessages>d__6.MoveNext() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 135
+--- Конец трассировка стека из предыдущего расположения, где возникло исключение ---
+   в System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   в System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   в NServiceBus.MessagePump.<ProcessMessages>d__5.MoveNext() в C:\BuildAgent\work\3206e2123f54fce4\src\NServiceBus.Core\Transports\Msmq\MessagePump.cs:строка 106
+2017-03-09 18:53:37.489 WARN  NServiceBus.RepeatedFailuresOverTimeCircuitBreaker The circuit breaker for MsmqPeek is now in the armed state
+2017-03-09 19:46:08.303 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 19:53:53.779 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 20:06:55.125 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 20:09:38.642 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 20:20:56.997 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 20:27:18.068 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 21:02:15.214 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 21:16:27.032 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 21:20:01.680 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
+2017-03-09 21:22:25.200 INFO  DefaultFactory Logging to 'D:\Лабы\ОТ\Lab4_ServiceBus\Client1\App_Data\' with level Info
