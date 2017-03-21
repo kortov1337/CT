@@ -25,7 +25,7 @@ namespace Client1.Controllers
         {
             
             var books = unitOfWork.Books.GetAll();
-            unitOfWork.Books.TrackPageView("Index");
+            unitOfWork.Books.TrackPageView("BRIIndex");
             return View(books);
         }
 
@@ -61,7 +61,7 @@ namespace Client1.Controllers
             if (ModelState.IsValid)
             {
                 unitOfWork.Books.CreateDist(booksModels);
-                unitOfWork.Books.TrackPageView("Create");
+                unitOfWork.Books.TrackPageView("BRICreate");
                 //unitOfWork.Books.Create(booksModels);
                // unitOfWork.Save();
                 return RedirectToAction("Index");
@@ -95,8 +95,7 @@ namespace Client1.Controllers
             if (ModelState.IsValid)
             {
                 unitOfWork.Books.UpdateDist(booksModels);
-                //unitOfWork.Books.Update(booksModels);
-                //unitOfWork.Save();
+                unitOfWork.Books.TrackPageView("BRIEdit");
                 return RedirectToAction("Index");
             }
             return View(booksModels);
@@ -123,6 +122,7 @@ namespace Client1.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             unitOfWork.Books.DeleteDist(id);
+            unitOfWork.Books.TrackPageView("BRIDelete");
             return RedirectToAction("Index");
         }
 

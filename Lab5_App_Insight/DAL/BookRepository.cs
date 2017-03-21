@@ -41,7 +41,7 @@ namespace DAL
             BusStuff.InitServerEndpoint("ServerUI").GetAwaiter().GetResult();
             Operation operation = new Operation(book, "Create");
             BusStuff.Send("ServerUI", operation);
-            TrackEvent("Create item", new Dictionary<string, string>
+            TrackEvent("BRICreate item", new Dictionary<string, string>
                 {
                     { "Operation", "Title" },
                     { "Create", book.title }
@@ -58,7 +58,7 @@ namespace DAL
             BusStuff.InitServerEndpoint("ServerUI").GetAwaiter().GetResult();
             Operation operation = new Operation(book, "Update");
             BusStuff.Send("ServerUI", operation);
-            TrackEvent("Update item", new Dictionary<string, string>
+            TrackEvent("BRIUpdate item", new Dictionary<string, string>
                 {
                     { "Operation", "Title" },
                     { "Update", book.title }
@@ -80,7 +80,7 @@ namespace DAL
                 BusStuff.InitServerEndpoint("ServerUI").GetAwaiter().GetResult();
                 Operation operation = new Operation(book, "Delete");
                 BusStuff.Send("ServerUI", operation);
-                TrackEvent("Delete item", new Dictionary<string, string>
+                TrackEvent("BRIDelete item", new Dictionary<string, string>
                 {
                     { "Operation", "Title" },
                     { "Delete", book.title }

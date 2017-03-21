@@ -4,3 +4,4 @@
 2017-03-12 19:33:02.147 INFO  DefaultFactory Logging to 'd:\Лабы\ОТ\Lab5_App_Insight\Client1\App_Data\' with level Info
 2017-03-12 19:54:11.630 INFO  DefaultFactory Logging to 'd:\Лабы\ОТ\Lab5_App_Insight\Client1\App_Data\' with level Info
 2017-03-12 20:16:41.690 INFO  DefaultFactory Logging to 'd:\Лабы\ОТ\Lab5_App_Insight\Client1\App_Data\' with level Info
+2017-03-12 23:17:13.806 INFO  DefaultFactory Logging to 'd:\Лабы\ОТ\Lab5_App_Insight\Client1\App_Data\' with level Info
